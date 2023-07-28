@@ -31,6 +31,8 @@ sudo sh test-docker.sh
 
 启动显示qt：./display
 
+![image](https://github.com/8upersaiyan/Mymonitor/blob/main/1.png)
+
 
 
 
