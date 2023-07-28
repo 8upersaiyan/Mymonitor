@@ -11,13 +11,29 @@ curl -fsSL https://test.docker.com -o test-docker.sh
 
 sudo sh test-docker.sh
 # 项目演示
-/docker/scriptsmm目录下
+**路径：/docker/scriptsmm**
+
 启动容器：
 ./monitor_docker_run.sh
 
-
 进入容器：
 ./monitor_docker_into.sh
+
+**路径：/work/cmake/test_monitor/src**
+
+启动RPC模块：./server
+
+**路径：/work/cmake/test_monitor/src**
+
+启动monitor模块：./monitor
+
+**路径：/work/cmake/display_monitor**
+
+启动显示qt：./display
+
+
+
+
 
 
 
