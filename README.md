@@ -37,6 +37,8 @@ https://blog.csdn.net/super8ayan/category_12376431.html?spm=1001.2014.3001.5482
 进入容器：
 ./monitor_docker_into.sh
 
+## 本地监控
+
 **路径：/work/cmake/test_monitor/src**
 
 启动RPC模块：./server
@@ -50,6 +52,27 @@ https://blog.csdn.net/super8ayan/category_12376431.html?spm=1001.2014.3001.5482
 启动显示qt：./display
 
 ![image](https://github.com/8upersaiyan/Mymonitor/blob/main/1.png)
+
+
+## 远程监控
+
+客户端中的rpc_manager中的rpc_client构造函数中gRPC连接通道IP需要修改成我们需要监听的目标服务器IP地址
+  
+    auto channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials());
+    =》 auto channel = grpc::CreateChannel("192.168.11.129:50051", grpc::InsecureChannelCredentials());
+
+只需在服务端启动gRPC模块和monitor监控模块，客户端启动gRPC模块和display模块即可展示出服务器的信息
+
+可实现在一台客户端监控多台服务器的信息，只需更改gRPC连接IP即可。
+
+## 使用stress压测指令
+
+模拟系统负载较高时的场景
+
+    消耗CPU资源：$ stress -c 2 使用两个进程不断计算随机数的平方根
+    消耗内存资源：$ stress --vm 2 --vm-bytes 300M --vm-keep  产生两个子进程，每个进程分配 300M 内存
+    消耗IO资源：$ stress -i 2 每个进程都反复调用 sync 函数将内存上的内容写到硬盘上
+    消耗磁盘及IO：$ stress -d 1 --hdd-bytes 10M 创建一个进程不断的在磁盘上创建 10M 大小的文件并写入内容
 
 
 
